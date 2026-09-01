@@ -1,0 +1,561 @@
+
+    <div class="journey-progress" aria-label="Check-in journey progress"><div class="progress-copy"><span>YOUR WEB</span><strong id="journey-progress-text">1 / 7 · THE TINGLE</strong></div><div class="progress-track"><span id="journey-progress-fill"></span></div></div>
+
+    <section class="stats-bar" aria-label="Mood statistics">
+      <div class="stat-block">
+        <span class="stat-label">CHECK-IN STREAK</span>
+        <strong class="stat-value red" id="legacy-stat-streak">0 days</strong>
+      </div>
+      <div class="stat-block">
+        <span class="stat-label">7-CHECK AVERAGE</span>
+        <strong class="stat-value yellow" id="legacy-stat-average">–/5</strong>
+      </div>
+      <div class="stat-block">
+        <span class="stat-label">TODAY</span>
+        <strong class="stat-value white" id="legacy-stat-today">Not yet</strong>
+      </div>
+    </section>
+
+    <section class="spidey-boost-top comic-panel" aria-label="Today’s Spidey Boost"><div class="boost-top-icon">✨</div><div><span class="eyebrow">SPIDEY BOOST · TODAY'S REMINDER</span><p id="top-motivation-quote">You do not have to finish everything today to be moving forward.</p><span id="top-motivation-author">— SpideyTingle</span></div><button id="top-quote-next" class="small-icon-button" type="button" aria-label="Show another reminder">↻</button></section>
+
+    <nav class="tab-nav" role="tablist" aria-label="SpideyTingle steps">
+      <button class="tab-btn active" type="button" role="tab" aria-selected="true" data-tab="tingle">1 · THE TINGLE</button>
+      <button class="tab-btn" type="button" role="tab" aria-selected="false" data-tab="vent">2 · THE VENT</button>
+      <button class="tab-btn" type="button" role="tab" aria-selected="false" data-tab="sense">3 · THE SENSE</button>
+      <button class="tab-btn" type="button" role="tab" aria-selected="false" data-tab="nudge">4 · THE NUDGE</button>
+      <button class="tab-btn" type="button" role="tab" aria-selected="false" data-tab="insight">5 · THE INSIGHT</button>
+      <button class="tab-btn" type="button" role="tab" aria-selected="false" data-tab="loop">6 · THE LOOP</button>
+      <button class="tab-btn" type="button" role="tab" aria-selected="false" data-tab="safety">7 · SAFETY NET</button>
+    </nav>
+
+    <!-- 1 THE TINGLE -->
+    <section class="step-panel active" id="panel-tingle" role="tabpanel">
+      <div class="section-heading">
+        <span class="eyebrow">STEP 1 · THE TINGLE</span>
+        <h2>Okay, what's the vibe? 👀</h2>
+        <p>Pick the feeling that's closest. No overthinking. No wrong answers. Just your current vibe.</p>
+      </div>
+
+      <div class="mood-grid">
+        <button class="mood-btn mood-tangled" type="button" data-score="1" data-label="Tangled">
+          <span class="mood-icon">🕸️</span><span class="mood-name">TANGLED</span>
+        </button>
+        <button class="mood-btn mood-heavy" type="button" data-score="2" data-label="Heavy">
+          <span class="mood-icon">🌧️</span><span class="mood-name">HEAVY</span>
+        </button>
+        <button class="mood-btn mood-steady" type="button" data-score="3" data-label="Steady">
+          <span class="mood-icon">😐</span><span class="mood-name">STEADY</span>
+        </button>
+        <button class="mood-btn mood-bright" type="button" data-score="4" data-label="Bright">
+          <span class="mood-icon">✨</span><span class="mood-name">BRIGHT</span>
+        </button>
+        <button class="mood-btn mood-web" type="button" data-score="5" data-label="Electric">
+          <span class="mood-icon">🕷️</span><span class="mood-name">ELECTRIC</span>
+        </button>
+      </div>
+
+      <div class="mix-row">
+        <span class="mix-label">What's in the mix?</span>
+        <div class="tag-list">
+          <button class="tag-chip" type="button" data-tag="academics">academics</button>
+          <button class="tag-chip" type="button" data-tag="deadlines">deadlines</button>
+          <button class="tag-chip" type="button" data-tag="sleep">sleep</button>
+          <button class="tag-chip" type="button" data-tag="friends">friends</button>
+          <button class="tag-chip" type="button" data-tag="family">family</button>
+          <button class="tag-chip" type="button" data-tag="lonely">lonely</button>
+          <button class="tag-chip" type="button" data-tag="anxious">anxious</button>
+          <button class="tag-chip" type="button" data-tag="energised">energised</button>
+          <button class="tag-chip" type="button" data-tag="grateful">grateful</button>
+          <button class="tag-chip" type="button" data-tag="burnout">burnout</button>
+        </div>
+      </div>
+
+      <textarea id="mood-note" class="comic-input" placeholder="Optional: drop one line about your day…"></textarea>
+      <div class="action-row">
+        <button id="checkin-btn" class="red-button comic-button" type="button" disabled>LOCK IN THE VIBE</button>
+        <button class="blue-button comic-button" type="button" data-goto="vent">STEP 2 → VENT ABOUT IT</button>
+      </div>
+      <p id="checkin-status" class="status-msg"></p>
+    </section>
+
+    <!-- 2 THE VENT -->
+    <section class="step-panel" id="panel-vent" role="tabpanel">
+      <div class="section-heading">
+        <span class="eyebrow">STEP 2 · THE VENT</span>
+        <h2>Drop the lore. 🫵</h2>
+        <p>Type it messy, casual, lowercase, whatever. Spidey will reflect the broad vibe back to you.</p>
+      </div>
+
+      <div class="vent-layout">
+        <div class="chat-card comic-panel">
+          <div class="spidey-chat-hero">
+            <div class="spidey-mask" aria-label="SpideyTingle AI companion avatar">
+              <span class="eye eye-left"></span><span class="eye eye-right"></span>
+              <span class="mask-web"></span>
+            </div>
+            <div><span class="eyebrow">SPIDEY AI · YOUR WEB BUDDY</span><strong>Friendly neighborhood Spidey</strong><small>Here to listen — not diagnose.</small></div>
+          </div>
+          <div id="chat-window" class="chat-window">
+            <div class="chat-bubble spidey">Hey! I'm your friendly neighborhood check-in buddy. What's on your mind today?</div>
+          </div>
+          <div class="quick-prompts">
+            <button type="button" data-prompt="I have a lot of deadlines and feel overwhelmed.">school is doing TOO much</button>
+            <button type="button" data-prompt="I feel tired and need a reset.">my battery is at 2%</button>
+            <button type="button" data-prompt="Today actually went pretty well.">wait… today was actually good</button>
+          </div>
+          <div class="chat-input-row">
+            <input id="chat-input" class="comic-input" type="text" placeholder="What's the lore?" autocomplete="off">
+            <button id="chat-send" class="blue-button comic-button" type="button">SEND</button>
+          </div>
+          <p class="safety-note">SpideyTingle is a supportive companion, not a therapist or diagnostic tool.</p>
+        </div>
+        <div class="side-callout">
+          <span class="callout-icon">☁️</span>
+          <h3>THE VENT</h3>
+          <p>No polished sentences required. A few words are enough to start the web.</p>
+        </div>
+      </div>
+      <div class="panel-nav"><button class="blue-button comic-button" type="button" data-goto="sense">STEP 3 → SEE THE SENSE</button></div>
+    </section>
+
+    <!-- 3 THE SENSE -->
+    <section class="step-panel" id="panel-sense" role="tabpanel">
+      <div class="section-heading">
+        <span class="eyebrow">STEP 3 · THE SENSE</span>
+        <h2>Here's the vibe check. 🕷️</h2>
+        <p>A reflection of your recent message — not a diagnosis.</p>
+      </div>
+
+      <div id="sense-empty" class="empty-state comic-panel">
+        <span class="big-icon">🧠</span>
+        <h3>No sense yet.</h3>
+        <p>Vent first, then come back here to see the emotional signal detected by the companion.</p>
+        <button class="blue-button comic-button" type="button" data-goto="vent">GO TO THE VENT</button>
+      </div>
+
+      <div id="sense-result" class="sense-result comic-panel hidden">
+        <div class="result-topline">
+          <span id="sense-category" class="sense-tag">neutral</span>
+          <span class="sense-mini">COMPANION READ</span>
+        </div>
+        <h3 id="sense-text"></h3>
+        <div id="sense-matched-wrap" class="matched-wrap hidden">
+          <span class="matched-label">SIGNALS PICKED UP</span>
+          <div id="sense-matched" class="matched-list"></div>
+        </div>
+      </div>
+      <div class="panel-nav"><button class="blue-button comic-button" type="button" data-goto="nudge">STEP 4 → GET A NUDGE</button></div>
+    </section>
+
+    <!-- 4 THE NUDGE -->
+    <section class="step-panel" id="panel-nudge" role="tabpanel">
+      <div class="section-heading">
+        <span class="eyebrow">STEP 4 · THE NUDGE</span>
+        <h2>Okay bestie, one tiny move. ✨</h2>
+        <p>Keep it light. The goal is a tiny next step, not a giant life overhaul.</p>
+      </div>
+
+      <div id="nudge-empty" class="empty-state comic-panel">
+        <span class="big-icon">✨</span>
+        <h3>No nudge yet.</h3>
+        <p>Send a message in The Vent and Spidey will choose a small action based on the response.</p>
+        <button class="blue-button comic-button" type="button" data-goto="vent">VENT FIRST</button>
+      </div>
+
+      <div id="nudge-card" class="nudge-card comic-panel hidden">
+        <div class="nudge-icon">🕸️</div>
+        <div class="nudge-content">
+          <span class="eyebrow">YOUR NEXT MOVE</span>
+          <h3 id="nudge-title"></h3>
+          <p id="nudge-body"></p>
+          <button id="nudge-action" class="red-button comic-button" type="button"></button>
+        </div>
+      </div>
+
+      <div id="breathing-widget" class="breathing-widget comic-panel hidden">
+        <div id="breathing-core" class="breathing-core inhale"></div>
+        <div class="breathing-copy"><span>60-SECOND RESET</span><strong id="breathing-phase">Breathe in…</strong></div>
+      </div>
+      <div class="panel-nav"><button class="blue-button comic-button" type="button" data-goto="insight">STEP 5 → SEE THE INSIGHT</button></div>
+    </section>
+
+    <!-- 5 THE INSIGHT -->
+    <section class="step-panel" id="panel-insight" role="tabpanel">
+      <div class="section-heading">
+        <span class="eyebrow">STEP 5 · THE INSIGHT</span>
+        <h2>Your vibe, over time. 📈</h2>
+        <p>Use the trend to notice patterns, not to grade yourself.</p>
+      </div>
+
+      <div class="chart-card comic-panel">
+        <div class="chart-header"><span>MOOD TREND</span><span>1 = TANGLED · 5 = WEB-SLINGING</span></div>
+        <div class="chart-wrap"><canvas id="mood-chart"></canvas></div>
+        <p id="no-data-msg" class="status-msg">Log a few check-ins to start seeing your trend!</p>
+      </div>
+      <div class="panel-nav"><button class="blue-button comic-button" type="button" data-goto="loop">STEP 6 → OPEN THE LOOP</button></div>
+    </section>
+
+    <!-- 6 THE LOOP -->
+    <section class="step-panel" id="panel-loop" role="tabpanel">
+      <div class="section-heading">
+        <span class="eyebrow">STEP 6 · THE LOOP</span>
+        <h2>Your vibe receipts. 🧾</h2>
+        <p>Scroll through what you logged and spot your own patterns.</p>
+      </div>
+
+      <div id="loop-empty" class="empty-state comic-panel">
+        <span class="big-icon">🕸️</span>
+        <h3>Your loop is empty.</h3>
+        <p>Your check-ins will appear here after you log them.</p>
+      </div>
+      <div id="loop-list" class="loop-list"></div>
+      <div class="panel-nav"><button class="blue-button comic-button" type="button" data-goto="safety">STEP 7 → SAFETY NET</button></div>
+    </section>
+
+    <!-- 7 SAFETY NET -->
+    <section class="step-panel" id="panel-safety" role="tabpanel">
+      <div class="section-heading">
+        <span class="eyebrow">STEP 7 · SAFETY NET</span>
+        <h2>Your real-life safety net. 🫶</h2>
+        <p>If you ever feel unsafe or need more support than an app can provide, reach out to a trusted person or appropriate local support service.</p>
+      </div>
+
+      <div class="safety-grid">
+        <div class="safety-card comic-panel">
+          <span class="safety-icon">🛡️</span>
+          <h3>Trusted person</h3>
+          <p>Consider telling a parent, guardian, teacher, counselor, friend, or another trusted adult what you need.</p>
+        </div>
+        <div class="safety-card comic-panel">
+          <span class="safety-icon">📞</span>
+          <h3>Immediate support</h3>
+          <p>If there is an immediate safety concern, contact your local emergency service or a crisis/support service available in your area.</p>
+        </div>
+        <div class="safety-card comic-panel">
+          <span class="safety-icon">🕸️</span>
+          <h3>SpideyTingle boundary</h3>
+          <p>This app is a companion for reflection and check-ins. It cannot replace professional or emergency support.</p>
+        </div>
+      </div>
+      <div class="panel-nav"><button class="red-button comic-button" type="button" data-goto="tingle">BACK TO THE TINGLE</button></div>
+    </section>
+
+    <!-- EXTRA FEATURES: outside the 7-step navigation -->
+    <section class="extra-features" id="extra-features">
+      <div class="extra-features-heading">
+        <span class="eyebrow">BEYOND THE 7-STEP WEB</span>
+        <h2>More ways to spend time with your tingle.</h2>
+        <p>Extra drops live down here — the main seven-step journey stays clean.</p>
+      </div>
+      <div class="extra-feature-grid">
+<!-- 8 THE VIBE -->
+    <section class="extra-feature-section" id="vibe-section">
+      <div class="section-heading">
+        <span class="eyebrow">EXTRA FEATURE · THE VIBE</span>
+        <h2>Match the vibe. 🎧</h2>
+        <p>Music and movie picks shaped around the mood you selected — a little entertainment for the moment you're in.</p>
+      </div>
+
+      <div class="vibe-arena comic-panel">
+        <div class="web-decoration web-one"></div>
+        <div class="web-decoration web-two"></div>
+        <div class="vibe-spider-badge" aria-hidden="true">🕷️</div>
+        <div class="vibe-intro">
+          <span class="eyebrow">🕷️ SPIDEY SIGNAL · LIVE</span>
+          <h3 id="recommendation-mood-label">Pick a mood in The Tingle</h3>
+          <p id="vibe-signal-copy">Your vibe unlocks a different corner of the web.</p>
+        </div>
+        <div class="vibe-pulse"><span></span><small>VIBE<br>SCAN</small></div>
+        <button class="blue-button comic-button vibe-change" type="button" data-goto="tingle">CHANGE MOOD ↗</button>
+      </div>
+
+      <div class="recommendation-grid">
+        <div class="recommendation-card comic-panel">
+          <div class="recommendation-heading">
+            <span class="recommendation-icon">🎧</span>
+            <div><span class="eyebrow">MUSIC</span><h3>Put on a track</h3></div>
+          </div>
+          <div id="music-recommendations" class="recommendation-list">
+            <div class="recommendation-empty">Pick a mood to unlock your music web.</div>
+          </div>
+        </div>
+
+        <div class="recommendation-card comic-panel">
+          <div class="recommendation-heading">
+            <span class="recommendation-icon">🎬</span>
+            <div><span class="eyebrow">MOVIES</span><h3>Pick a movie</h3></div>
+          </div>
+          <div id="movie-recommendations" class="recommendation-list">
+            <div class="recommendation-empty">Pick a mood to unlock your movie web.</div>
+          </div>
+        </div>
+      </div>
+
+      <p class="recommendation-note">Recommendations are for entertainment and mood support — not treatment or diagnosis.</p>
+    </section>
+
+    <!-- DIARY + FUTURE SELF: outside the 7-step navigation -->
+    <section class="extra-feature-section" id="diary-section">
+      <div class="section-heading"><span class="eyebrow">EXTRA FEATURE · THE DIARY</span><h2>Your no-judgement corner. 📖</h2><p>Keep today's story and tomorrow's goals together, with writing-pattern recognition while you journal.</p></div>
+      <div class="diary-tabs" role="tablist" aria-label="Diary features">
+        <button class="diary-tab active" type="button" role="tab" aria-selected="true" data-diary-tab="entry">📖 DIARY ENTRY</button>
+        <button class="diary-tab" type="button" role="tab" aria-selected="false" data-diary-tab="future">🕸️ FUTURE NOTE + GOALS</button>
+      </div>
+      <div class="diary-panel active" id="diary-panel-entry" role="tabpanel">
+        <div class="diary-editor comic-panel"><div class="diary-toolbar"><div><span class="eyebrow">TODAY'S PAGE</span><h3>What happened today?</h3></div><span id="diary-date" class="diary-date"></span></div><input id="diary-title" class="comic-input diary-title" type="text" maxlength="100" placeholder="Give today's entry a title..."><textarea id="diary-entry" class="comic-input diary-textarea" maxlength="5000" placeholder="Dear diary, today...&#10;&#10;Write whatever feels right. There are no grades here. 🕸️"></textarea><div class="diary-footer"><span id="diary-count" class="character-count">0 / 5000</span><button id="diary-save" class="red-button comic-button" type="button">SAVE TODAY'S ENTRY</button></div><p id="diary-status" class="status-msg"></p></div>
+        <div class="typing-analysis comic-panel"><div class="typing-copy"><span class="eyebrow">WRITING PATTERN RECOGNITION</span><h3>Spidey notices your writing rhythm.</h3><p>While you write, the app can observe broad interaction signals such as typing pace, pauses, backspaces and word count. It does not read or upload your raw keystrokes.</p></div><div class="typing-metrics"><div class="metric-card"><span>TYPING PACE</span><strong id="typing-pace">—</strong></div><div class="metric-card"><span>PAUSES</span><strong id="typing-pauses">—</strong></div><div class="metric-card"><span>BACKSPACES</span><strong id="typing-backspaces">—</strong></div><div class="metric-card"><span>WORDS</span><strong id="typing-words">0</strong></div></div></div>
+        <div class="diary-history comic-panel"><div class="history-heading"><div><span class="eyebrow">YOUR PAGES</span><h3>Past entries</h3></div><span class="history-private">LOCAL DIARY</span></div><div id="diary-empty" class="diary-empty">Your saved pages will appear here.</div><div id="diary-list" class="diary-list"></div></div>
+      </div>
+      <div class="diary-panel" id="diary-panel-future" role="tabpanel">
+      <div class="future-self-section comic-panel" id="future-self">
+        <div class="section-heading compact-heading">
+          <span class="eyebrow">FUTURE SELF · TIME CAPSULE</span>
+          <h2>Leave a note for the you who needs it.</h2>
+          <p>Write encouragement, a reminder of your goals, or something you want future-you to remember. You can set a date or let SpideyTingle surface it after a low-mood pattern in your check-ins.</p>
+        </div>
+
+        <div id="future-letter-alert" class="future-letter-alert hidden"></div>
+
+        <div class="future-letter-grid">
+          <div class="future-letter-editor">
+            <input id="future-letter-title" class="comic-input" type="text" maxlength="100" placeholder="Letter title — e.g. Keep going, future me">
+            <textarea id="future-letter-entry" class="comic-input future-letter-textarea" maxlength="4000" placeholder="Hey future me...
+
+Remember what you are working toward, what you are proud of, and what you want to hear on a difficult day."></textarea>
+            <div class="future-options">
+              <label class="future-option"><input type="radio" name="future-trigger" value="low_mood" checked> <span>Open after a low-mood pattern</span></label>
+              <label class="future-option"><input type="radio" name="future-trigger" value="date"> <span>Open on a set date</span></label>
+            </div>
+            <input id="future-letter-date" class="comic-input" type="date" aria-label="Future letter date">
+            <div class="diary-footer">
+              <span id="future-letter-status" class="status-msg"></span>
+              <button id="future-letter-save" class="red-button comic-button" type="button">SEAL THE LETTER</button>
+            </div>
+          </div>
+
+          <div class="future-letter-info">
+            <div class="aha-card">
+              <span class="recommendation-icon">🕸️</span>
+              <div>
+                <span class="eyebrow">THE AHA MOMENT</span>
+                <h3 id="future-letter-preview-title">Future-you is worth writing to.</h3>
+                <p id="future-letter-preview">When your check-ins show a low-mood pattern, your saved words can appear here as a small reminder that you have goals, progress and people who care about you.</p>
+              </div>
+            </div>
+            <div id="future-letter-list" class="future-letter-list"></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="goals-quotes-grid">
+        <div class="goals-card comic-panel">
+          <div class="history-heading">
+            <div><span class="eyebrow">FUTURE GOALS</span><h3>Build your web forward.</h3></div>
+            <span class="history-private">TRACK YOUR WINS</span>
+          </div>
+          <div class="goal-form">
+            <input id="goal-input" class="comic-input" type="text" maxlength="160" placeholder="Add a goal — big or tiny...">
+            <button id="goal-add" class="blue-button comic-button" type="button">ADD GOAL</button>
+          </div>
+          <div id="goals-empty" class="diary-empty">No goals yet. Start with one small thing you want future-you to thank you for.</div>
+          <div id="goals-list" class="goals-list"></div>
+        </div>
+
+        <div class="quotes-card comic-panel">
+          <div class="history-heading">
+            <div><span class="eyebrow">SPIDEY BOOST</span><h3>Today's reminder.</h3></div>
+            <button id="quote-next" class="small-icon-button" type="button" aria-label="Show another quote">↻</button>
+          </div>
+          <div class="quote-display">
+            <span class="quote-mark">“</span>
+            <p id="motivation-quote">You do not have to finish everything today to be moving forward.</p>
+            <span id="motivation-author" class="quote-author">— SpideyTingle</span>
+          </div>
+        </div>
+      </div>
+
+      </div>
+    </section>
+
+      <!-- VOICE + MOOD PREDICTION -->
+      <section class="extra-feature-section voice-lab-section" id="voice-lab">
+        <div class="section-heading">
+          <span class="eyebrow">EXTRA FEATURE · THE SIXTH SENSE LAB</span>
+          <h2>Let your voice tell the story.</h2>
+          <p>Try a short voice check-in and SpideyTingle will turn broad voice and typing signals into a simple wellness estimate. Your raw microphone audio stays in your browser and is not uploaded.</p>
+        </div>
+
+        <div class="voice-lab-grid">
+          <div class="voice-card comic-panel">
+            <div class="voice-card-top">
+              <div>
+                <span class="eyebrow">VOICE-TONE ANALYSIS</span>
+                <h3>Speak for a few seconds.</h3>
+              </div>
+              <span id="voice-status-badge" class="analysis-badge">READY</span>
+            </div>
+            <div class="voice-visualizer" id="voice-visualizer" aria-hidden="true">
+              <span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span>
+            </div>
+            <p id="voice-status" class="voice-status">Microphone access is only used while you run this check.</p>
+            <div class="voice-actions">
+              <button id="voice-start" class="red-button comic-button" type="button">🎙 START VOICE CHECK</button>
+              <button id="voice-stop" class="blue-button comic-button" type="button" disabled>STOP &amp; ANALYZE</button>
+            </div>
+            <div class="metric-grid">
+              <div class="metric-card"><span>PACE</span><strong id="voice-pace">—</strong></div>
+              <div class="metric-card"><span>ENERGY</span><strong id="voice-energy">—</strong></div>
+              <div class="metric-card"><span>PITCH</span><strong id="voice-pitch">—</strong></div>
+              <div class="metric-card"><span>PAUSES</span><strong id="voice-pauses">—</strong></div>
+            </div>
+          </div>
+
+          <div class="prediction-card comic-panel">
+            <div class="voice-card-top">
+              <div>
+                <span class="eyebrow">MOOD PREDICTION</span>
+                <h3>What signal is Spidey seeing?</h3>
+              </div>
+              <span class="prediction-spark">🕸️</span>
+            </div>
+            <div id="mood-prediction-empty" class="prediction-empty">
+              <span>🧠</span>
+              <p>Run a voice check or write in your diary to generate a wellness signal.</p>
+            </div>
+            <div id="mood-prediction-result" class="prediction-result hidden">
+              <div class="prediction-main">
+                <span class="eyebrow">ESTIMATED SIGNAL</span>
+                <h4 id="predicted-mood">—</h4>
+                <p id="prediction-copy">—</p>
+              </div>
+              <div class="prediction-meter"><span id="prediction-meter-fill"></span></div>
+              <div class="prediction-factors" id="prediction-factors"></div>
+            </div>
+            <button id="run-mood-prediction" class="blue-button comic-button prediction-button" type="button">PREDICT MY MOOD SIGNAL</button>
+            <p class="analysis-disclaimer">Demo feature: this is a lightweight wellness estimate, not a diagnosis or a scientifically validated mental-health prediction.</p>
+          </div>
+        </div>
+
+
+      </section>
+
+
+      <!-- SPIDEY INTELLIGENCE HUB -->
+      <section class="extra-feature-section intelligence-hub" id="spidey-intelligence">
+        <div class="section-heading">
+          <span class="eyebrow">EXTRA FEATURE · SPIDEY INTELLIGENCE</span>
+          <h2>Your emotional fingerprint. 🕷️</h2>
+          <p>Spidey learns patterns from your own check-ins and reflections — never a diagnosis, never a comparison with other people.</p>
+        </div>
+
+        <div class="fingerprint-hero comic-panel">
+          <div class="fingerprint-copy">
+            <div class="signal-orb" id="signal-orb"><span>🕷️</span></div>
+            <div>
+              <span class="eyebrow">SPIDEY SENSE · PERSONAL BASELINE</span>
+              <h3 id="fingerprint-headline">Your web is still forming.</h3>
+              <p id="fingerprint-summary">Log a few check-ins and journal moments. Spidey will compare new signals with your own recent pattern.</p>
+              <span class="baseline-note">PERSONAL BASELINE · NOT A MEDICAL ASSESSMENT</span>
+            </div>
+          </div>
+          <div class="fingerprint-bars" id="fingerprint-bars">
+            <div class="fp-bar"><span>ENERGY</span><div><i style="width:20%"></i></div><strong id="fp-energy">—</strong></div>
+            <div class="fp-bar"><span>STRESS LOAD</span><div><i style="width:20%"></i></div><strong id="fp-stress">—</strong></div>
+            <div class="fp-bar"><span>SOCIAL CONNECTION</span><div><i style="width:20%"></i></div><strong id="fp-social">—</strong></div>
+            <div class="fp-bar"><span>MOMENTUM</span><div><i style="width:20%"></i></div><strong id="fp-momentum">—</strong></div>
+          </div>
+        </div>
+
+        <div class="intelligence-grid">
+          <article class="forecast-card comic-panel">
+            <div class="card-kicker"><span>🌦️</span><span class="eyebrow">EMOTIONAL WEATHER</span></div>
+            <h3 id="forecast-title">Forecast needs a little data.</h3>
+            <p id="forecast-copy">Your recent pattern will become the forecast — not a prediction of a diagnosis.</p>
+            <div class="forecast-meter"><span id="forecast-meter-fill"></span></div>
+            <div class="forecast-factors" id="forecast-factors"></div>
+          </article>
+
+          <article class="pattern-card comic-panel">
+            <div class="card-kicker"><span>🧩</span><span class="eyebrow">PATTERN EXPLORER</span></div>
+            <h3>What seems to move your mood?</h3>
+            <div id="pattern-list" class="pattern-list"><div class="mini-empty">Check in a few times to reveal your recurring context patterns.</div></div>
+            <p class="privacy-note">These are correlations in your entries, not causes or diagnoses.</p>
+          </article>
+        </div>
+
+        <div class="insight-actions">
+          <button id="refresh-intelligence" class="red-button comic-button" type="button">🕷 REFRESH MY SPIDEY SENSE</button>
+          <button id="open-reset" class="blue-button comic-button" type="button">⚡ 2-MINUTE SPIDEY RESET</button>
+        </div>
+
+        <div class="reset-panel comic-panel hidden" id="reset-panel">
+          <div class="reset-header"><div><span class="eyebrow">SPIDEY RESET</span><h3>One tiny thing at a time.</h3></div><strong id="reset-timer">02:00</strong></div>
+          <div class="reset-steps" id="reset-steps">
+            <div class="reset-step active"><span>01</span><div><b>PAUSE</b><p>Drop your shoulders and let yourself pause for a moment.</p></div></div>
+            <div class="reset-step"><span>02</span><div><b>BREATHE</b><p>Take a slow breath in, then a comfortable breath out.</p></div></div>
+            <div class="reset-step"><span>03</span><div><b>NOTICE</b><p>Name one thing you can see, hear, and physically feel.</p></div></div>
+            <div class="reset-step"><span>04</span><div><b>NEXT THREAD</b><p>Choose one small next action — or choose to reach out to someone you trust.</p></div></div>
+          </div>
+          <div class="reset-actions"><button id="reset-start" class="red-button comic-button" type="button">START RESET</button><button id="reset-close" class="small-outline-button" type="button">CLOSE</button></div>
+        </div>
+      </section>
+
+
+
+      <!-- TRUSTED CONTACTS + THERAPIST REPORT -->
+      <section class="support-report-section" id="support-report-section">
+        <div class="section-heading">
+          <span class="eyebrow">SUPPORT CIRCLE · THERAPIST TOOLKIT</span>
+          <h2>Keep your people in the loop. 🫶</h2>
+          <p>Choose trusted contacts who can receive a gentle support alert when a persistent low-mood/stress pattern appears. Then generate a private, therapist-ready reflection report.</p>
+        </div>
+
+        <div class="support-report-grid">
+          <div class="profile-card comic-panel">
+            <div class="history-heading">
+              <div><span class="eyebrow">YOUR PROFILE</span><h3>Trusted support circle</h3></div>
+              <span class="history-private">YOUR CHOICE</span>
+            </div>
+            <input id="profile-name" class="comic-input" type="text" maxlength="80" placeholder="Your name / nickname">
+            <div id="contact-list" class="contact-list"></div>
+            <button id="add-contact" class="small-outline-button" type="button">＋ ADD TRUSTED PERSON</button>
+            <div class="alert-settings">
+              <label class="toggle-row"><input id="alert-enabled" type="checkbox"><span>Enable support-circle alerts</span></label>
+              <label class="threshold-row">Check for a persistent pattern across <select id="alert-threshold"><option value="2">2</option><option value="3" selected>3</option><option value="4">4</option><option value="5">5</option><option value="7">7</option></select> days</label>
+            </div>
+            <p class="privacy-note">Alerts use a simple pattern in your check-ins, not a diagnosis. The app only contacts people you explicitly add and enable.</p>
+            <div class="profile-actions">
+              <button id="save-profile" class="red-button comic-button" type="button">SAVE SUPPORT CIRCLE</button>
+              <button id="test-alert" class="blue-button comic-button" type="button">SEND TEST ALERT</button>
+            </div>
+            <p id="profile-status" class="status-msg"></p>
+            <div id="support-alert-status" class="support-alert-status"></div>
+          </div>
+
+          <div class="report-card comic-panel">
+            <div class="history-heading">
+              <div><span class="eyebrow">THERAPIST-READY REPORT</span><h3>Your mental-wellness timeline</h3></div>
+              <span class="history-private">PRIVATE EXPORT</span>
+            </div>
+            <div class="report-preview-grid">
+              <div><span>CHECK-INS</span><strong id="report-checkins">—</strong></div>
+              <div><span>7-CHECK AVG</span><strong id="report-average">—</strong></div>
+              <div><span>DIARY PAGES</span><strong id="report-diaries">—</strong></div>
+              <div><span>CONTEXT TAGS</span><strong id="report-tags">—</strong></div>
+            </div>
+            <p id="report-summary" class="report-summary">Generate a report to turn your check-ins, diary activity and broad signal history into a conversation starter for your real-life therapist or counselor.</p>
+            <div class="report-actions">
+              <button id="generate-report" class="red-button comic-button" type="button">GENERATE REPORT</button>
+              <button id="print-report" class="blue-button comic-button" type="button" disabled>PRINT / SAVE AS PDF</button>
+            </div>
+            <div id="report-highlights" class="report-highlights"></div>
+            <p class="privacy-note">This report is for reflection and discussion with a qualified professional. It does not diagnose depression, anxiety, or any other condition.</p>
+          </div>
+        </div>
+      </section>
+
+      <div class="panel-nav"><button class="blue-button comic-button" type="button" data-goto="tingle">BACK TO THE TINGLE</button></div>
+      </div>
+    </section>
+
+  

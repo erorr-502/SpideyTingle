@@ -1,0 +1,1016 @@
+@import url('https://fonts.googleapis.com/css2?family=Bangers&family=Barlow+Condensed:wght@400;600;700;800&family=Permanent+Marker&display=swap');
+:root{--ink:#f7f4ec;--muted:#d2cfca;--navy:#061126;--panel:rgba(5,13,31,.86);--red:#e82b2b;--blue:#187fe8;--yellow:#ffd11b;--purple:#8c3dcc;--line:#38506c;--shadow:6px 7px 0 #02050b}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:#050914;color:var(--ink);font-family:'Barlow Condensed',sans-serif;overflow-x:hidden}button{font:inherit;cursor:pointer;color:inherit}.app-shell{min-height:100vh;position:relative}.comic-bg{position:fixed;inset:0;z-index:-5;background-image:linear-gradient(rgba(3,8,19,.69),rgba(3,8,19,.74)),url('/static/assets/spidey-comic-watermark.jpg');background-size:cover;background-position:center;filter:saturate(.9) contrast(1.05)}.halftone{position:fixed;inset:0;z-index:-4;pointer-events:none;background-image:radial-gradient(rgba(255,255,255,.12) 1px,transparent 1px);background-size:7px 7px;opacity:.14}.scroll-progress{position:fixed;top:0;left:0;right:0;height:4px;z-index:99;background:#0b1327}.scroll-progress span{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--red),var(--yellow),var(--blue))}
+.comic-sidebar{position:fixed;left:0;top:0;bottom:0;width:235px;background:rgba(3,13,30,.94);border-right:2px solid #2e4b70;z-index:40;padding:24px 15px;display:flex;flex-direction:column;box-shadow:12px 0 30px rgba(0,0,0,.25)}.sidebar-brand{display:flex;align-items:center;gap:10px;padding:0 4px 18px;border-bottom:1px dashed #48617d}.logo-frame{width:67px;height:67px;background:#fff;border-radius:17px;border:3px solid #fff;box-shadow:4px 5px 0 #000;overflow:hidden;flex:none}.logo-frame img{width:100%;height:100%;object-fit:contain}.brand-name{font-family:'Bangers';font-size:27px;line-height:.9;letter-spacing:.04em;text-shadow:2px 2px 0 #000}.brand-name span{color:var(--red)}.brand-sub{color:#a7a9b0;font-size:12px;line-height:1.05;letter-spacing:.08em;margin-top:6px}.web-label{font-weight:800;letter-spacing:.16em;font-size:11px;color:#aaa8ab;margin:22px 8px 8px}.comic-nav{display:grid;gap:3px}.nav-row{display:grid;grid-template-columns:35px 25px 1fr 18px;align-items:center;gap:4px;padding:11px 8px;border:1px solid transparent;background:transparent;border-radius:12px;text-align:left;transition:.18s}.nav-row:hover{background:rgba(255,255,255,.07);transform:translateX(3px)}.nav-row.active{background:#f4f0e7;color:#12131b;box-shadow:5px 6px 0 rgba(0,0,0,.45)}.nav-icon{font-size:24px;text-align:center}.nav-num{font-size:12px;color:#8e949e}.nav-row.active .nav-num{color:#7a7b80}.nav-text b{display:block;font-family:'Bangers';font-size:20px;letter-spacing:.06em}.nav-text small{display:block;font-family:'Barlow Condensed';font-size:11px;color:#aaa;letter-spacing:.05em}.nav-row.active .nav-text small{color:#777}.nav-arrow{font-size:30px;opacity:.5}.sidebar-bottom{margin-top:auto;display:grid;gap:12px}.privacy-box{display:flex;gap:10px;align-items:flex-start;border:2px dashed #75839a;border-radius:15px;padding:11px;background:rgba(8,19,39,.7)}.privacy-dot{width:12px;height:12px;background:#45c781;border-radius:50%;box-shadow:0 0 0 6px rgba(69,199,129,.1);margin-top:3px}.privacy-box b{display:block;font-size:12px;letter-spacing:.08em}.privacy-box small{display:block;color:#aaa;font-size:10px;margin-top:2px}.vibe-button,.vibe-top{border:2px solid #9d7b00;background:var(--yellow);color:#0b0c12;border-radius:11px;padding:12px;font-family:'Bangers';font-size:20px;box-shadow:4px 5px 0 #705900;transition:.15s}.vibe-button:hover,.vibe-top:hover{transform:translateY(-2px);box-shadow:4px 7px 0 #705900}.mobile-toggle{display:none}
+.main-stage{margin-left:235px;padding:22px 30px 45px;max-width:1600px}.top-header{min-height:105px;display:flex;align-items:center;justify-content:space-between;gap:20px}.issue-mark{background:var(--yellow);color:#111;padding:7px 12px;border:2px solid #111;box-shadow:3px 4px 0 #000;transform:rotate(-2deg);font-weight:800;letter-spacing:.06em}.boost-bubble{position:relative;background:#fff8e9;color:#17151b;border:3px solid #17151b;border-radius:13px;padding:9px 22px;min-width:310px;box-shadow:5px 6px 0 #000;transform:rotate(1deg)}.boost-bubble:after{content:"";position:absolute;right:-14px;bottom:-14px;border:10px solid transparent;border-top-color:#17151b;transform:rotate(-18deg)}.boost-bubble span{display:inline-block;background:var(--yellow);padding:3px 7px;font-family:'Bangers';font-size:14px;transform:rotate(-2deg)}.boost-bubble p{margin:6px 0 0;font-family:'Permanent Marker';font-size:15px}.boost-bubble small{font-size:10px;color:#777}.header-actions{display:flex;align-items:center;gap:10px}.vibe-top{white-space:nowrap}.theme-toggle{width:48px;height:43px;border:2px solid #75829a;background:#0a142b;border-radius:25px;font-size:21px}
+.hero-grid{display:grid;grid-template-columns:1.65fr .75fr;gap:14px;margin-bottom:14px}.hero-panel,.mood-panel{position:relative;min-height:355px;border:2px solid #385c83;border-radius:16px;background:linear-gradient(125deg,rgba(3,10,25,.94),rgba(8,19,38,.79));box-shadow:var(--shadow);overflow:hidden}.hero-panel{padding:34px 36px}.hero-panel:after{content:"";position:absolute;right:-80px;top:-110px;width:320px;height:320px;border:3px solid rgba(255,209,27,.3);border-radius:50%;box-shadow:0 0 0 20px rgba(255,209,27,.08),0 0 0 42px rgba(255,209,27,.05),0 0 0 64px rgba(255,209,27,.03)}.comic-tag{display:inline-block;padding:7px 13px;border:2px solid #111;box-shadow:3px 4px 0 #000;font-family:'Bangers';font-size:18px;transform:rotate(-2deg)}.comic-tag.red{background:var(--red)}.comic-tag.yellow{background:var(--yellow);color:#111}.hero-panel h1{font-family:'Bangers';font-size:66px;line-height:.82;margin:28px 0 12px;letter-spacing:.04em;text-shadow:4px 5px 0 #000}.hero-panel h1 strong{display:block;color:var(--yellow);font-weight:400;font-size:82px}.hero-panel p{max-width:560px;font-family:system-ui,sans-serif;font-size:14px;line-height:1.55;color:#d9dce3}.hero-buttons{display:flex;gap:12px;margin-top:22px}.primary-comic,.secondary-comic{padding:12px 16px;border-radius:9px;border:2px solid #050505;box-shadow:4px 5px 0 #000;font-family:'Bangers';font-size:20px;letter-spacing:.03em;transition:.16s}.primary-comic{background:var(--blue)}.secondary-comic{background:transparent}.primary-comic:hover,.secondary-comic:hover{transform:translateY(-3px)}.primary-comic span{margin-left:8px}.hero-illustration{position:absolute;right:55px;bottom:20px;width:220px;height:220px}.spidey-silhouette{font-size:145px;filter:drop-shadow(5px 8px 0 #000);transform:rotate(-12deg)}.thwip{position:absolute;right:-25px;bottom:0;background:var(--yellow);color:#111;padding:9px 12px;border:3px solid #111;box-shadow:4px 5px 0 #000;font-family:'Bangers';font-size:25px;transform:rotate(8deg)}.mood-panel{padding:26px}.mood-panel h2{font-family:'Bangers';font-size:31px;margin:24px 0 0}.mood-panel>p{color:#b8bdc7;margin:4px 0 14px}.mood-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}.mood-tile{min-height:88px;border:1px solid #38506c;background:rgba(18,31,54,.78);border-radius:10px;padding:8px;display:grid;place-items:center;transition:.15s}.mood-tile:hover{transform:translateY(-3px);border-color:#fff}.mood-tile.chosen{background:#102f50;border-color:var(--blue);box-shadow:0 0 0 2px rgba(24,127,232,.25)}.mood-tile span{font-size:30px}.mood-tile b{font-size:13px;letter-spacing:.07em}.custom-mood{width:100%;margin-top:10px;border:1px dashed #8290a2;background:transparent;border-radius:9px;padding:9px;font-weight:800;letter-spacing:.06em}
+.stats-strip{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:14px}.stat{position:relative;min-height:82px;padding:13px 15px;border:1px solid var(--line);border-radius:12px;background:rgba(7,18,35,.9);box-shadow:3px 4px 0 rgba(0,0,0,.45);overflow:hidden}.stat:before{content:"";position:absolute;inset:0;background:linear-gradient(90deg,transparent,rgba(255,255,255,.03));pointer-events:none}.stat span{display:block;font-size:11px;font-weight:800;letter-spacing:.09em}.stat b{display:inline-block;font-family:'Bangers';font-size:35px;line-height:1;margin-top:5px}.stat small{margin-left:8px;color:#9ea7b4}.stat i{position:absolute;right:15px;top:24px;font-style:normal;font-size:32px}.red-stat{border-color:#8e2b35}.red-stat b{color:#ff4148}.yellow-stat{border-color:#8b751f}.yellow-stat b{color:var(--yellow)}.blue-stat{border-color:#255f98}.blue-stat b{color:#58adff}.purple-stat{border-color:#6f379b}.purple-stat b{color:#e36aff}
+.feature-grid{display:grid;grid-template-columns:1.05fr .8fr 1.2fr 1fr;gap:10px;margin-bottom:14px}.feature-card{min-height:220px;text-align:left;border:2px solid #365274;border-radius:14px;background:rgba(5,14,29,.9);box-shadow:4px 5px 0 #000;position:relative;padding:18px;overflow:hidden;transition:.17s}.feature-card:hover{transform:translateY(-4px);border-color:#fff}.card-title{font-family:'Bangers';font-size:27px;letter-spacing:.04em}.feature-card p{margin:3px 0;color:#d4d6da}.speech{position:absolute;left:20px;bottom:60px;background:#f7f0df;color:#202026;padding:10px 13px;border:2px solid #111;border-radius:12px;font-size:13px;max-width:155px}.mini-spidey{position:absolute;right:12px;bottom:20px;font-size:75px;filter:drop-shadow(3px 4px 0 #000)}.card-cta{position:absolute;left:18px;bottom:17px;border:1px solid #fff;border-radius:7px;padding:7px 11px;font-weight:800;font-size:11px;background:#111b30}.nudge-card{background:linear-gradient(135deg,rgba(25,26,21,.94),rgba(15,20,31,.94))}.burst{white-space:pre-line;position:absolute;left:42px;top:80px;background:var(--yellow);color:#111;padding:18px 22px;clip-path:polygon(5% 20%,18% 7%,31% 14%,47% 3%,61% 14%,80% 7%,95% 21%,88% 39%,98% 54%,86% 67%,94% 85%,74% 84%,60% 97%,46% 87%,27% 95%,22% 79%,4% 82%,11% 63%,1% 48%,13% 34%);font-family:'Bangers';font-size:20px;text-align:center}.trend-card .mini-chart{position:absolute;left:20px;right:20px;bottom:50px;height:95px;display:flex;align-items:end;gap:8px;background:repeating-linear-gradient(to top,rgba(255,255,255,.07) 0 1px,transparent 1px 24px);padding:8px}.mini-chart span{flex:1;background:var(--red);box-shadow:0 0 8px rgba(232,43,43,.45);border-radius:5px 5px 0 0;min-height:12px}.diary-book{position:absolute;right:30px;bottom:40px;font-size:92px;filter:drop-shadow(5px 6px 0 #000);transform:rotate(10deg)}
+.wellness-web{display:flex;align-items:center;justify-content:space-between;gap:25px;border:2px solid #3d526d;border-radius:15px;background:rgba(5,14,28,.92);padding:16px 20px;box-shadow:4px 5px 0 #000}.wellness-web h2{font-family:'Bangers';font-size:28px;margin:0}.wellness-web p{margin:2px 0;color:#adb5c0}.web-actions{display:flex;gap:14px;align-items:center}.web-actions button{background:transparent;border:0;display:grid;place-items:center;min-width:72px;transition:.15s}.web-actions button:hover{transform:translateY(-4px)}.web-actions span{width:48px;height:48px;display:grid;place-items:center;border:2px solid #d5d5d5;border-radius:50%;background:#17243b;font-size:24px;box-shadow:3px 4px 0 #000}.web-actions b{font-size:11px;margin-top:5px}.web-actions small{font-size:10px;color:#aaa}.legacy-mount{margin-top:20px}.legacy-mount .tab-nav{display:none!important}.legacy-mount .journey-progress,.legacy-mount>.stats-bar,.legacy-mount>.spidey-boost-top{display:none!important}.legacy-mount .step-panel{scroll-margin-top:20px}.footer{text-align:center;color:#8e99a8;font-size:10px;letter-spacing:.1em;padding:25px}
+.react-dark .comic-bg{background-image:linear-gradient(rgba(2,5,13,.76),rgba(2,5,13,.82)),url('/static/assets/spidey-comic-watermark.jpg')}.react-dark .feature-card,.react-dark .stat,.react-dark .wellness-web,.react-dark .hero-panel,.react-dark .mood-panel{background:rgba(2,7,18,.9)}
+@keyframes pulse{0%{transform:scale(1)}50%{transform:scale(1.012)}100%{transform:scale(1)}}.hero-grid.pulse{animation:pulse .5s ease}
+@media(max-width:1200px){.comic-sidebar{width:200px}.main-stage{margin-left:200px;padding:18px}.hero-grid{grid-template-columns:1fr}.hero-illustration{right:80px}.feature-grid{grid-template-columns:1fr 1fr}.wellness-web{align-items:flex-start;flex-direction:column}.web-actions{width:100%;justify-content:space-between}}@media(max-width:760px){.comic-sidebar{left:-245px;width:235px;transition:.25s}.comic-sidebar.open{left:0}.mobile-toggle{display:block;position:fixed;right:14px;top:14px;z-index:60;background:var(--yellow);color:#111;border:2px solid #111;border-radius:10px;width:42px;height:42px;box-shadow:3px 4px 0 #000;font-weight:900}.main-stage{margin-left:0;padding:70px 12px 25px}.top-header{min-height:75px}.issue-mark,.boost-bubble{display:none}.header-actions{margin-left:auto}.vibe-top{font-size:16px;padding:9px}.hero-panel{padding:25px 20px;min-height:410px}.hero-panel h1{font-size:52px}.hero-panel h1 strong{font-size:64px}.hero-illustration{right:20px;bottom:10px;opacity:.55}.stats-strip{grid-template-columns:1fr 1fr}.feature-grid{grid-template-columns:1fr}.mood-grid{grid-template-columns:repeat(2,1fr)}.web-actions{display:grid;grid-template-columns:repeat(4,1fr);gap:6px}.web-actions button{min-width:0}.web-actions span{width:42px;height:42px}.legacy-mount .step-panel{padding:18px!important}}
+
+
+/* ===== LEGACY FEATURE AREA — POLISHED COMIC UI ===== */
+.legacy-mount{position:relative;margin-top:18px;padding-bottom:36px}
+.legacy-mount::before{content:"YOUR WEB • INTERACTIVE CHECK-IN";display:inline-flex;align-items:center;margin:0 0 12px 2px;padding:6px 11px;background:#ffd11b;color:#101018;border:2px solid #111;box-shadow:3px 4px 0 #000;font-family:'Bangers',sans-serif;font-size:15px;letter-spacing:.06em;transform:rotate(-1deg)}
+.legacy-mount .step-panel{min-height:560px;padding:30px 32px;background:linear-gradient(145deg,rgba(4,12,28,.95),rgba(9,23,46,.90));border:2px solid rgba(73,133,199,.55);border-radius:18px;box-shadow:7px 8px 0 rgba(0,0,0,.65),0 18px 50px rgba(0,0,0,.28);position:relative;overflow:hidden}
+.legacy-mount .step-panel::after{content:"";position:absolute;right:-100px;bottom:-120px;width:300px;height:300px;border:2px solid rgba(255,209,27,.16);border-radius:50%;box-shadow:0 0 0 24px rgba(255,209,27,.05),0 0 0 50px rgba(255,209,27,.035);pointer-events:none}
+.legacy-mount .section-heading{position:relative;z-index:1;margin-bottom:25px}
+.legacy-mount .section-heading .eyebrow{display:inline-block;padding:5px 9px;background:#e82b2b;color:#fff;border:2px solid #111;box-shadow:3px 3px 0 #000;font-family:'Bangers';font-size:15px;letter-spacing:.08em;transform:rotate(-1deg)}
+.legacy-mount .section-heading h2{font-family:'Bangers';font-size:clamp(42px,5vw,64px);line-height:.95;margin:16px 0 10px;color:#fff;text-shadow:3px 4px 0 #000;letter-spacing:.025em}
+.legacy-mount .section-heading p{font-family:'Barlow Condensed',sans-serif;color:#c3cfdf;font-size:16px;line-height:1.45;max-width:760px}
+.legacy-mount .mood-grid{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:12px;margin:8px 0 24px}
+.legacy-mount .mood-btn{min-height:142px;padding:14px;border:2px solid rgba(120,158,202,.32);background:linear-gradient(145deg,rgba(17,39,73,.95),rgba(8,22,46,.95));border-radius:14px;box-shadow:4px 5px 0 rgba(0,0,0,.42);transition:transform .18s,box-shadow .18s,border-color .18s,background .18s}
+.legacy-mount .mood-btn:hover{transform:translateY(-5px) rotate(-1deg);border-color:#ffd11b;box-shadow:5px 8px 0 rgba(0,0,0,.5)}
+.legacy-mount .mood-btn.selected{border-color:#ffd11b;background:linear-gradient(145deg,#163b69,#102849);box-shadow:0 0 0 2px rgba(255,209,27,.18),5px 7px 0 rgba(0,0,0,.55),0 0 25px rgba(255,209,27,.08)}
+.legacy-mount .mood-icon{font-size:43px}.legacy-mount .mood-name{font-family:'Bangers';font-size:22px;letter-spacing:.06em}
+.legacy-mount .mix-row{padding:16px;border:1px dashed rgba(148,178,213,.42);border-radius:14px;background:rgba(3,12,27,.48)}
+.legacy-mount .mix-label{font-family:'Bangers';font-size:20px;color:#fff;letter-spacing:.04em;margin-bottom:11px}
+.legacy-mount .tag-list{gap:8px}.legacy-mount .tag-chip{font-family:'Barlow Condensed';font-size:13px;padding:7px 12px;background:rgba(18,44,78,.8);color:#b9c9de;border:1px solid rgba(112,153,199,.38);transition:.15s}
+.legacy-mount .tag-chip:hover,.legacy-mount .tag-chip.selected{transform:translateY(-2px);color:#111;background:#ffd11b;border-color:#111;box-shadow:2px 3px 0 #000}
+.legacy-mount textarea.comic-input{min-height:105px;margin-top:16px;background:rgba(1,8,20,.78);border:2px solid rgba(91,135,185,.34);font-size:15px}
+.legacy-mount .action-row,.legacy-mount .panel-nav{margin-top:18px}.legacy-mount .comic-button{font-family:'Bangers';font-size:20px;padding:12px 18px;border-radius:9px;border:2px solid #111;box-shadow:4px 5px 0 #000}
+.legacy-mount .status-msg{font-size:13px;color:#9fb5d2}
+.legacy-mount .vent-layout{grid-template-columns:minmax(0,1fr) 260px;gap:18px}.legacy-mount .chat-card{padding:18px;background:rgba(4,15,33,.84);border:2px solid rgba(73,133,199,.38);box-shadow:4px 5px 0 rgba(0,0,0,.45)}
+.legacy-mount .spidey-chat-hero{display:flex;align-items:center;gap:12px;padding-bottom:14px;border-bottom:1px dashed rgba(137,169,216,.25)}
+.legacy-mount .spidey-chat-hero strong{display:block;font-family:'Bangers';font-size:25px;letter-spacing:.03em}.legacy-mount .spidey-chat-hero small{display:block;color:#9eacc0;margin-top:2px}
+.legacy-mount .chat-window{min-height:290px;max-height:420px;padding:15px 6px}.legacy-mount .chat-bubble{font-size:15px;box-shadow:2px 3px 0 rgba(0,0,0,.25)}
+.legacy-mount .side-callout{align-self:stretch;padding:22px;border:2px solid #ffd11b;border-radius:15px;background:linear-gradient(160deg,rgba(39,29,6,.92),rgba(16,20,32,.92));box-shadow:4px 5px 0 #000;position:relative;overflow:hidden}.legacy-mount .side-callout h3{font-family:'Bangers';font-size:34px;margin:10px 0}.legacy-mount .side-callout p{font-size:15px;line-height:1.45;color:#cbd2dd}
+.legacy-mount .empty-state,.legacy-mount .sense-result,.legacy-mount .comic-panel{border:2px solid rgba(73,133,199,.38);background:rgba(4,15,33,.84);box-shadow:4px 5px 0 rgba(0,0,0,.45);border-radius:15px}
+.legacy-mount .empty-state{padding:45px 30px;text-align:center}.legacy-mount .empty-state .big-icon{font-size:62px;display:block;margin-bottom:8px}.legacy-mount .empty-state h3{font-family:'Bangers';font-size:36px;margin:8px 0}.legacy-mount .empty-state p{max-width:620px;margin:0 auto 18px;color:#b8c4d6;font-size:15px}
+.legacy-mount .insight-grid,.legacy-mount .loop-grid,.legacy-mount .safety-grid,.legacy-mount .report-grid,.legacy-mount .feature-grid{gap:14px}
+.legacy-mount .hidden{display:none!important}
+.legacy-mount input.comic-input{font-size:15px;background:rgba(1,8,20,.78);border:2px solid rgba(91,135,185,.34)}
+.legacy-mount .extra-features,.legacy-mount .extra-feature-section,.legacy-mount .support-report-section{margin-top:18px;border:2px solid rgba(73,133,199,.4);border-radius:18px;background:rgba(4,13,28,.9);box-shadow:6px 7px 0 rgba(0,0,0,.52);padding:28px}
+.legacy-mount .extra-features h2,.legacy-mount .extra-feature-section h2,.legacy-mount .support-report-section h2{font-family:'Bangers';font-size:42px;letter-spacing:.03em;text-shadow:2px 3px 0 #000}
+.legacy-mount .extra-features p,.legacy-mount .extra-feature-section p,.legacy-mount .support-report-section p{color:#bac7d9;line-height:1.5}
+@media(max-width:1000px){.legacy-mount .mood-grid{grid-template-columns:repeat(3,1fr)}.legacy-mount .vent-layout{grid-template-columns:1fr}.legacy-mount .side-callout{min-height:150px}}
+@media(max-width:650px){.legacy-mount .step-panel{padding:22px 17px;min-height:0}.legacy-mount .mood-grid{grid-template-columns:repeat(2,1fr);gap:9px}.legacy-mount .mood-btn{min-height:118px}.legacy-mount .section-heading h2{font-size:42px}.legacy-mount .extra-features,.legacy-mount .extra-feature-section,.legacy-mount .support-report-section{padding:20px 16px}}
+
+
+/* =========================================================
+   NORMAL MODE — WARM COMIC PAPER PALETTE
+   Keeps the existing VIBE MODE untouched.
+   ========================================================= */
+
+html[data-theme="light"] body,
+body:not(.react-dark) {
+  --normal-paper: #f6efdd;
+  --normal-paper-2: #fff9e9;
+  --normal-ink: #211d1c;
+  --normal-muted: #6f6965;
+  --normal-red: #ed4b50;
+  --normal-yellow: #ffd33d;
+  --normal-blue: #3e91e8;
+  --normal-teal: #79afb1;
+  --normal-line: #2a2522;
+  --normal-shadow: 7px 8px 0 #2a2522;
+
+  background: var(--normal-paper);
+  color: var(--normal-ink);
+}
+
+/* Paper + subtle newspaper/comic-print texture */
+html[data-theme="light"] .comic-bg,
+body:not(.react-dark) .comic-bg {
+  background-color: var(--normal-paper);
+  background-image:
+    radial-gradient(rgba(38,31,27,.105) .8px, transparent .8px),
+    linear-gradient(rgba(255,255,255,.18), rgba(255,255,255,.18));
+  background-size: 7px 7px, auto;
+  background-position: 0 0, 0 0;
+  filter: none;
+  opacity: 1;
+}
+
+html[data-theme="light"] .halftone,
+body:not(.react-dark) .halftone {
+  background-image: radial-gradient(rgba(37,31,28,.14) 1px, transparent 1px);
+  background-size: 6px 6px;
+  opacity: .38;
+}
+
+/* Sidebar */
+html[data-theme="light"] .comic-sidebar,
+body:not(.react-dark) .comic-sidebar {
+  background: #f5eee0;
+  color: var(--normal-ink);
+  border-right: 2px solid var(--normal-line);
+  box-shadow: 10px 0 0 rgba(42,37,34,.08);
+}
+
+html[data-theme="light"] .sidebar-brand,
+body:not(.react-dark) .sidebar-brand {
+  border-bottom-color: #b9ada0;
+}
+
+html[data-theme="light"] .brand-name,
+body:not(.react-dark) .brand-name {
+  color: var(--normal-ink);
+  text-shadow: none;
+}
+
+html[data-theme="light"] .brand-name span,
+body:not(.react-dark) .brand-name span {
+  color: var(--normal-red);
+}
+
+html[data-theme="light"] .brand-sub,
+body:not(.react-dark) .brand-sub,
+html[data-theme="light"] .web-label,
+body:not(.react-dark) .web-label {
+  color: #756f6b;
+}
+
+html[data-theme="light"] .nav-row,
+body:not(.react-dark) .nav-row {
+  color: var(--normal-ink);
+}
+
+html[data-theme="light"] .nav-row:hover,
+body:not(.react-dark) .nav-row:hover {
+  background: rgba(255,255,255,.65);
+}
+
+html[data-theme="light"] .nav-row.active,
+body:not(.react-dark) .nav-row.active {
+  background: var(--normal-paper-2);
+  color: var(--normal-ink);
+  border: 2px solid var(--normal-line);
+  box-shadow: 5px 6px 0 rgba(42,37,34,.22);
+}
+
+html[data-theme="light"] .nav-text small,
+body:not(.react-dark) .nav-text small,
+html[data-theme="light"] .nav-row.active .nav-text small,
+body:not(.react-dark) .nav-row.active .nav-text small {
+  color: #77716c;
+}
+
+html[data-theme="light"] .privacy-box,
+body:not(.react-dark) .privacy-box {
+  background: rgba(255,250,235,.82);
+  border-color: #b8aa99;
+  color: var(--normal-ink);
+}
+
+html[data-theme="light"] .privacy-box small,
+body:not(.react-dark) .privacy-box small {
+  color: #77706b;
+}
+
+/* Top header */
+html[data-theme="light"] .issue-mark,
+body:not(.react-dark) .issue-mark {
+  background: var(--normal-yellow);
+  border-color: var(--normal-line);
+  box-shadow: 3px 4px 0 var(--normal-line);
+}
+
+html[data-theme="light"] .boost-bubble,
+body:not(.react-dark) .boost-bubble {
+  background: var(--normal-paper-2);
+  color: var(--normal-ink);
+  border-color: var(--normal-line);
+  box-shadow: 5px 6px 0 var(--normal-line);
+}
+
+html[data-theme="light"] .theme-toggle,
+body:not(.react-dark) .theme-toggle {
+  background: #fffaf0;
+  color: var(--normal-ink);
+  border-color: var(--normal-line);
+}
+
+/* Hero keeps the same geometry, only changes palette */
+html[data-theme="light"] .hero-panel,
+body:not(.react-dark) .hero-panel,
+html[data-theme="light"] .mood-panel,
+body:not(.react-dark) .mood-panel {
+  background: rgba(255,249,233,.93);
+  color: var(--normal-ink);
+  border: 2px solid var(--normal-line);
+  box-shadow: var(--normal-shadow);
+}
+
+html[data-theme="light"] .hero-panel h1,
+body:not(.react-dark) .hero-panel h1 {
+  color: var(--normal-ink);
+  text-shadow: 3px 4px 0 rgba(42,37,34,.22);
+}
+
+html[data-theme="light"] .hero-panel h1 strong,
+body:not(.react-dark) .hero-panel h1 strong {
+  color: var(--normal-red);
+}
+
+html[data-theme="light"] .hero-panel p,
+body:not(.react-dark) .hero-panel p {
+  color: #5f5955;
+}
+
+html[data-theme="light"] .mood-panel h2,
+body:not(.react-dark) .mood-panel h2 {
+  color: var(--normal-ink);
+}
+
+html[data-theme="light"] .mood-panel > p,
+body:not(.react-dark) .mood-panel > p {
+  color: #6e6863;
+}
+
+/* Mood tiles */
+html[data-theme="light"] .mood-tile,
+body:not(.react-dark) .mood-tile {
+  background: #fff9e9;
+  color: var(--normal-ink);
+  border: 2px solid #39322e;
+  box-shadow: 4px 5px 0 rgba(42,37,34,.18);
+}
+
+html[data-theme="light"] .mood-tile:hover,
+body:not(.react-dark) .mood-tile:hover {
+  transform: translateY(-4px) rotate(-1deg);
+  box-shadow: 5px 7px 0 rgba(42,37,34,.25);
+}
+
+html[data-theme="light"] .mood-tile.chosen,
+body:not(.react-dark) .mood-tile.chosen {
+  background: var(--normal-yellow);
+  border-color: var(--normal-line);
+  box-shadow: 5px 6px 0 var(--normal-line);
+}
+
+/* Buttons */
+html[data-theme="light"] .primary-comic,
+body:not(.react-dark) .primary-comic {
+  background: var(--normal-blue);
+  color: #fff;
+  border-color: var(--normal-line);
+  box-shadow: 4px 5px 0 var(--normal-line);
+}
+
+html[data-theme="light"] .secondary-comic,
+body:not(.react-dark) .secondary-comic {
+  background: #fff9e9;
+  color: var(--normal-ink);
+  border-color: var(--normal-line);
+  box-shadow: 4px 5px 0 var(--normal-line);
+}
+
+html[data-theme="light"] .vibe-button,
+body:not(.react-dark) .vibe-button,
+html[data-theme="light"] .vibe-top,
+body:not(.react-dark) .vibe-top {
+  background: var(--normal-yellow);
+  color: var(--normal-ink);
+  border-color: #8f7200;
+  box-shadow: 4px 5px 0 #6e5900;
+}
+
+/* Stats */
+html[data-theme="light"] .stats-strip,
+body:not(.react-dark) .stats-strip {
+  background: rgba(255,249,233,.95);
+  color: var(--normal-ink);
+  border: 2px solid var(--normal-line);
+  box-shadow: var(--normal-shadow);
+}
+
+html[data-theme="light"] .stat,
+body:not(.react-dark) .stat {
+  color: var(--normal-ink);
+}
+
+html[data-theme="light"] .stat small,
+body:not(.react-dark) .stat small,
+html[data-theme="light"] .stat span,
+body:not(.react-dark) .stat span {
+  color: #706964;
+}
+
+/* Cards below the stats */
+html[data-theme="light"] .feature-card,
+body:not(.react-dark) .feature-card,
+html[data-theme="light"] .wellness-web,
+body:not(.react-dark) .wellness-web {
+  background: rgba(255,249,233,.94);
+  color: var(--normal-ink);
+  border-color: var(--normal-line);
+  box-shadow: var(--normal-shadow);
+}
+
+html[data-theme="light"] .feature-card p,
+body:not(.react-dark) .feature-card p,
+html[data-theme="light"] .wellness-web p,
+body:not(.react-dark) .wellness-web p {
+  color: #6a635e;
+}
+
+html[data-theme="light"] .card-cta,
+body:not(.react-dark) .card-cta {
+  border-color: var(--normal-line);
+  color: var(--normal-ink);
+  background: #fff9e9;
+}
+
+html[data-theme="light"] .ai-card,
+body:not(.react-dark) .ai-card {
+  border-top-color: var(--normal-blue);
+}
+
+html[data-theme="light"] .nudge-card,
+body:not(.react-dark) .nudge-card {
+  border-top-color: var(--normal-yellow);
+}
+
+html[data-theme="light"] .trend-card,
+body:not(.react-dark) .trend-card {
+  border-top-color: var(--normal-teal);
+}
+
+html[data-theme="light"] .diary-card,
+body:not(.react-dark) .diary-card {
+  border-top-color: var(--normal-red);
+}
+
+/* Wellness web */
+html[data-theme="light"] .wellness-item,
+body:not(.react-dark) .wellness-item {
+  color: var(--normal-ink);
+}
+
+html[data-theme="light"] .wellness-item:hover,
+body:not(.react-dark) .wellness-item:hover {
+  background: #fff4ce;
+  transform: translateY(-3px);
+}
+
+/* Legacy 7-step area */
+html[data-theme="light"] .legacy-mount,
+body:not(.react-dark) .legacy-mount {
+  color: var(--normal-ink);
+}
+
+html[data-theme="light"] .journey-progress,
+body:not(.react-dark) .journey-progress,
+html[data-theme="light"] .spidey-boost-top,
+body:not(.react-dark) .spidey-boost-top,
+html[data-theme="light"] .step-panel,
+body:not(.react-dark) .step-panel {
+  background: rgba(255,249,233,.95);
+  color: var(--normal-ink);
+  border: 2px solid var(--normal-line);
+  box-shadow: var(--normal-shadow);
+}
+
+html[data-theme="light"] .progress-copy,
+body:not(.react-dark) .progress-copy,
+html[data-theme="light"] .stat-label,
+body:not(.react-dark) .stat-label,
+html[data-theme="light"] .eyebrow,
+body:not(.react-dark) .eyebrow {
+  color: #746d67;
+}
+
+html[data-theme="light"] .section-heading h2,
+body:not(.react-dark) .section-heading h2 {
+  color: var(--normal-ink);
+  text-shadow: 2px 3px 0 rgba(42,37,34,.12);
+}
+
+html[data-theme="light"] .section-heading p,
+body:not(.react-dark) .section-heading p {
+  color: #6e6761;
+}
+
+html[data-theme="light"] .mood-btn,
+body:not(.react-dark) .mood-btn,
+html[data-theme="light"] .tag-chip,
+body:not(.react-dark) .tag-chip,
+html[data-theme="light"] .comic-input,
+body:not(.react-dark) .comic-input {
+  background: #fffaf0;
+  color: var(--normal-ink);
+  border-color: #514942;
+}
+
+html[data-theme="light"] .mood-btn:hover,
+body:not(.react-dark) .mood-btn:hover {
+  border-color: var(--normal-red);
+  box-shadow: 4px 5px 0 rgba(42,37,34,.18);
+}
+
+html[data-theme="light"] .mood-btn.selected,
+body:not(.react-dark) .mood-btn.selected {
+  background: var(--normal-yellow);
+  color: var(--normal-ink);
+  border-color: var(--normal-line);
+  box-shadow: 5px 6px 0 var(--normal-line);
+}
+
+html[data-theme="light"] .tag-chip:hover,
+body:not(.react-dark) .tag-chip:hover,
+html[data-theme="light"] .tag-chip.selected,
+body:not(.react-dark) .tag-chip.selected {
+  background: #dceff0;
+  color: var(--normal-ink);
+  border-color: #477f81;
+}
+
+html[data-theme="light"] .comic-input::placeholder,
+body:not(.react-dark) .comic-input::placeholder {
+  color: #8a817b;
+}
+
+html[data-theme="light"] .chat-card,
+body:not(.react-dark) .chat-card,
+html[data-theme="light"] .side-callout,
+body:not(.react-dark) .side-callout,
+html[data-theme="light"] .empty-state,
+body:not(.react-dark) .empty-state,
+html[data-theme="light"] .sense-result,
+body:not(.react-dark) .sense-result {
+  background: #fff9e9;
+  color: var(--normal-ink);
+  border-color: var(--normal-line);
+  box-shadow: 5px 6px 0 rgba(42,37,34,.18);
+}
+
+html[data-theme="light"] .chat-window,
+body:not(.react-dark) .chat-window {
+  background: #efe4cf;
+  border-color: #b7a897;
+}
+
+html[data-theme="light"] .chat-bubble.spidey,
+body:not(.react-dark) .chat-bubble.spidey {
+  background: #dceff0;
+  color: var(--normal-ink);
+  border-color: #477f81;
+}
+
+html[data-theme="light"] .chat-bubble.user,
+body:not(.react-dark) .chat-bubble.user {
+  background: #ffdede;
+  color: var(--normal-ink);
+  border-color: var(--normal-red);
+}
+
+html[data-theme="light"] .red-button,
+body:not(.react-dark) .red-button {
+  background: var(--normal-red);
+  color: #fff;
+  border-color: var(--normal-line);
+}
+
+html[data-theme="light"] .blue-button,
+body:not(.react-dark) .blue-button {
+  background: var(--normal-blue);
+  color: #fff;
+  border-color: var(--normal-line);
+}
+
+html[data-theme="light"] .small-icon-button,
+body:not(.react-dark) .small-icon-button {
+  background: #fff9e9;
+  color: var(--normal-ink);
+  border-color: var(--normal-line);
+}
+
+html[data-theme="light"] .status-msg,
+body:not(.react-dark) .status-msg,
+html[data-theme="light"] .safety-note,
+body:not(.react-dark) .safety-note {
+  color: #6f6862;
+}
+
+/* Keep VIBE MODE exactly on the existing dark theme */
+html[data-theme="dark"] body,
+body.react-dark {
+  background: #050914;
+}
+
+/* Mobile */
+@media (max-width: 800px) {
+  html[data-theme="light"] .comic-sidebar,
+  body:not(.react-dark) .comic-sidebar {
+    background: #f5eee0;
+  }
+}
+
+/* Interaction polish: clearer states, more legible stat context, and a safer mobile drawer. */
+.nav-scrim{display:none}
+.app-shell button:focus-visible,.app-shell input:focus-visible,.app-shell textarea:focus-visible{outline:3px solid var(--yellow);outline-offset:3px}
+.app-shell button{min-height:42px}
+.stat{min-height:96px}
+.stat small{display:block;margin:4px 36px 0 0;font-size:11px;line-height:1.1}
+.stat i{top:28px}
+
+@media(max-width:760px){
+  .comic-sidebar.open{box-shadow:12px 0 35px rgba(0,0,0,.4)}
+  .nav-scrim{display:block;position:fixed;inset:0;z-index:35;border:0;background:rgba(4,9,19,.52);opacity:0;pointer-events:none;transition:opacity .25s}
+  .nav-scrim.visible{opacity:1;pointer-events:auto}
+}
+
+/* Keep decorative artwork out of the reading and action areas. */
+@media(min-width:761px){
+  .hero-panel{padding-right:230px}
+  .hero-panel h1{font-size:62px}
+  .hero-panel h1 strong{font-size:74px}
+  .hero-panel p{max-width:490px}
+  .hero-buttons{flex-wrap:wrap;position:relative;z-index:2}
+  .hero-illustration{right:22px;bottom:18px;width:155px;height:155px;z-index:1;pointer-events:none}
+  .spidey-silhouette{font-size:104px;line-height:1}
+  .thwip{right:-8px;font-size:20px;padding:7px 10px}
+  .hero-panel .comic-tag,.hero-panel h1,.hero-panel p{position:relative;z-index:2}
+}
+
+.mini-spidey{right:14px;top:15px;bottom:auto;font-size:36px;line-height:1;opacity:.46;pointer-events:none}
+.burst{left:50%;top:76px;transform:translateX(-50%) scale(.66);transform-origin:top center}
+.diary-card p{max-width:62%}
+.diary-book{right:16px;bottom:42px;font-size:64px}
+
+@media(max-width:760px){
+  .hero-panel{padding-right:20px}
+  .hero-illustration{display:none}
+  .mini-spidey{font-size:32px}
+}
+
+/* Home-card layout: reserve the content area for copy and actions, not decoration. */
+@media(min-width:761px){
+  .hero-panel{padding-right:36px}
+  .hero-illustration{display:none}
+}
+
+.ai-card .mini-spidey,.diary-card .diary-book{display:none}
+.feature-card{min-height:232px}
+.feature-card .card-title{position:relative;z-index:1}
+.feature-card p{position:relative;z-index:1;max-width:100%;line-height:1.25}
+.nudge-card p{max-width:88%}
+.nudge-message{position:absolute;left:16px;right:16px;bottom:58px;padding:8px 10px;border:2px solid #16130c;border-radius:8px;background:var(--yellow);color:#16130c;box-shadow:3px 3px 0 rgba(0,0,0,.45);font-family:'Bangers';font-size:16px;line-height:.95;letter-spacing:.04em;text-align:center}
+.trend-card .mini-chart{left:18px;right:18px;bottom:57px;height:58px;gap:6px;padding:6px}
+.trend-card .mini-chart span{min-height:8px}
+
+@media(max-width:760px){
+  .feature-card{min-height:220px}
+  .nudge-message{font-size:15px}
+}
+
+/* Complete the warm-paper theme across the dashboard and extended reflection tools. */
+html[data-theme="light"] .stat,
+body:not(.react-dark) .stat,
+html[data-theme="light"] .web-actions span,
+body:not(.react-dark) .web-actions span,
+html[data-theme="light"] .legacy-mount .mix-row,
+body:not(.react-dark) .legacy-mount .mix-row {
+  background:#fff9e9;
+  color:var(--normal-ink);
+  border-color:var(--normal-line);
+  box-shadow:3px 4px 0 rgba(42,37,34,.18);
+}
+
+html[data-theme="light"] .legacy-mount .extra-features,
+body:not(.react-dark) .legacy-mount .extra-features,
+html[data-theme="light"] .legacy-mount .extra-feature-section,
+body:not(.react-dark) .legacy-mount .extra-feature-section,
+html[data-theme="light"] .legacy-mount .support-report-section,
+body:not(.react-dark) .legacy-mount .support-report-section {
+  background:rgba(255,249,233,.94);
+  color:var(--normal-ink);
+  border-color:var(--normal-line);
+  box-shadow:var(--normal-shadow);
+}
+
+html[data-theme="light"] .legacy-mount .extra-features h2,
+body:not(.react-dark) .legacy-mount .extra-features h2,
+html[data-theme="light"] .legacy-mount .extra-feature-section h2,
+body:not(.react-dark) .legacy-mount .extra-feature-section h2,
+html[data-theme="light"] .legacy-mount .support-report-section h2,
+body:not(.react-dark) .legacy-mount .support-report-section h2 {
+  color:var(--normal-ink);
+  text-shadow:2px 3px 0 rgba(42,37,34,.12);
+}
+
+html[data-theme="light"] .legacy-mount .extra-features p,
+body:not(.react-dark) .legacy-mount .extra-features p,
+html[data-theme="light"] .legacy-mount .extra-feature-section p,
+body:not(.react-dark) .legacy-mount .extra-feature-section p,
+html[data-theme="light"] .legacy-mount .support-report-section p,
+body:not(.react-dark) .legacy-mount .support-report-section p {
+  color:var(--normal-muted);
+}
+
+html[data-theme="light"] .legacy-mount .recommendation-item,
+body:not(.react-dark) .legacy-mount .recommendation-item,
+html[data-theme="light"] .legacy-mount .diary-entry-card,
+body:not(.react-dark) .legacy-mount .diary-entry-card,
+html[data-theme="light"] .legacy-mount .future-letter-card,
+body:not(.react-dark) .legacy-mount .future-letter-card,
+html[data-theme="light"] .legacy-mount .goal-row,
+body:not(.react-dark) .legacy-mount .goal-row,
+html[data-theme="light"] .legacy-mount .metric-card,
+body:not(.react-dark) .legacy-mount .metric-card,
+html[data-theme="light"] .legacy-mount .prediction-factors span,
+body:not(.react-dark) .legacy-mount .prediction-factors span,
+html[data-theme="light"] .legacy-mount .alert-settings,
+body:not(.react-dark) .legacy-mount .alert-settings,
+html[data-theme="light"] .legacy-mount .report-preview-grid > div,
+body:not(.react-dark) .legacy-mount .report-preview-grid > div,
+html[data-theme="light"] .legacy-mount .report-highlight,
+body:not(.react-dark) .legacy-mount .report-highlight,
+html[data-theme="light"] .legacy-mount .future-option,
+body:not(.react-dark) .legacy-mount .future-option,
+html[data-theme="light"] .legacy-mount .diary-tabs,
+body:not(.react-dark) .legacy-mount .diary-tabs,
+html[data-theme="light"] .legacy-mount .voice-visualizer,
+body:not(.react-dark) .legacy-mount .voice-visualizer {
+  background:#fffaf0;
+  color:var(--normal-ink);
+  border-color:#b8aa99;
+}
+
+html[data-theme="light"] .legacy-mount .recommendation-heading h3,
+body:not(.react-dark) .legacy-mount .recommendation-heading h3,
+html[data-theme="light"] .legacy-mount .recommendation-item h4,
+body:not(.react-dark) .legacy-mount .recommendation-item h4,
+html[data-theme="light"] .legacy-mount .diary-toolbar h3,
+body:not(.react-dark) .legacy-mount .diary-toolbar h3,
+html[data-theme="light"] .legacy-mount .history-heading h3,
+body:not(.react-dark) .legacy-mount .history-heading h3,
+html[data-theme="light"] .legacy-mount .diary-entry-top h4,
+body:not(.react-dark) .legacy-mount .diary-entry-top h4,
+html[data-theme="light"] .legacy-mount .future-letter-card-top h4,
+body:not(.react-dark) .legacy-mount .future-letter-card-top h4,
+html[data-theme="light"] .legacy-mount .voice-card-top h3,
+body:not(.react-dark) .legacy-mount .voice-card-top h3,
+html[data-theme="light"] .legacy-mount .typing-copy h3,
+body:not(.react-dark) .legacy-mount .typing-copy h3,
+html[data-theme="light"] .legacy-mount .metric-card strong,
+body:not(.react-dark) .legacy-mount .metric-card strong,
+html[data-theme="light"] .legacy-mount .report-preview-grid strong,
+body:not(.react-dark) .legacy-mount .report-preview-grid strong {
+  color:var(--normal-ink);
+}
+
+html[data-theme="light"] .legacy-mount .recommendation-item p,
+body:not(.react-dark) .legacy-mount .recommendation-item p,
+html[data-theme="light"] .legacy-mount .diary-entry-card p,
+body:not(.react-dark) .legacy-mount .diary-entry-card p,
+html[data-theme="light"] .legacy-mount .future-letter-body,
+body:not(.react-dark) .legacy-mount .future-letter-body,
+html[data-theme="light"] .legacy-mount .prediction-main p,
+body:not(.react-dark) .legacy-mount .prediction-main p,
+html[data-theme="light"] .legacy-mount .report-summary,
+body:not(.react-dark) .legacy-mount .report-summary,
+html[data-theme="light"] .legacy-mount .report-highlight,
+body:not(.react-dark) .legacy-mount .report-highlight,
+html[data-theme="light"] .legacy-mount .goal-row,
+body:not(.react-dark) .legacy-mount .goal-row {
+  color:var(--normal-muted);
+}
+
+html[data-theme="light"] .legacy-mount .vibe-arena,
+body:not(.react-dark) .legacy-mount .vibe-arena {
+  color:var(--normal-ink);
+  border-color:var(--normal-line);
+  background:radial-gradient(circle at 78% 30%,rgba(62,145,232,.22),transparent 24%),radial-gradient(circle at 20% 90%,rgba(237,75,80,.16),transparent 30%),#fff9e9;
+  box-shadow:var(--normal-shadow);
+}
+html[data-theme="light"] .legacy-mount .vibe-arena::after,
+body:not(.react-dark) .legacy-mount .vibe-arena::after { border-color:rgba(42,37,34,.16); }
+html[data-theme="light"] .legacy-mount .vibe-intro .eyebrow,
+body:not(.react-dark) .legacy-mount .vibe-intro .eyebrow { color:#a92e34; }
+html[data-theme="light"] .legacy-mount .vibe-intro p,
+body:not(.react-dark) .legacy-mount .vibe-intro p { color:var(--normal-muted); }
+html[data-theme="light"] .legacy-mount .vibe-pulse,
+body:not(.react-dark) .legacy-mount .vibe-pulse,
+html[data-theme="light"] .legacy-mount .web-decoration,
+body:not(.react-dark) .legacy-mount .web-decoration,
+html[data-theme="light"] .legacy-mount .web-decoration::before,
+body:not(.react-dark) .legacy-mount .web-decoration::before,
+html[data-theme="light"] .legacy-mount .web-decoration::after,
+body:not(.react-dark) .legacy-mount .web-decoration::after { border-color:rgba(42,37,34,.2); }
+
+html[data-theme="light"] .legacy-mount .small-icon-button,
+body:not(.react-dark) .legacy-mount .small-icon-button,
+html[data-theme="light"] .legacy-mount .small-outline-button,
+body:not(.react-dark) .legacy-mount .small-outline-button,
+html[data-theme="light"] .legacy-mount .threshold-row select,
+body:not(.react-dark) .legacy-mount .threshold-row select {
+  background:#fff9e9;
+  color:var(--normal-ink);
+  border-color:var(--normal-line);
+}
+
+/* Force the light palette through legacy component fills that carry dark inline defaults. */
+html[data-theme="light"] .legacy-mount .mix-row,
+body:not(.react-dark) .legacy-mount .mix-row,
+html[data-theme="light"] .legacy-mount .extra-features,
+body:not(.react-dark) .legacy-mount .extra-features,
+html[data-theme="light"] .legacy-mount .extra-feature-section,
+body:not(.react-dark) .legacy-mount .extra-feature-section,
+html[data-theme="light"] .legacy-mount .support-report-section,
+body:not(.react-dark) .legacy-mount .support-report-section,
+html[data-theme="light"] .legacy-mount .recommendation-card,
+body:not(.react-dark) .legacy-mount .recommendation-card,
+html[data-theme="light"] .legacy-mount .recommendation-item,
+body:not(.react-dark) .legacy-mount .recommendation-item,
+html[data-theme="light"] .legacy-mount .vibe-arena,
+body:not(.react-dark) .legacy-mount .vibe-arena {
+  background:#fff9e9 !important;
+  color:#211d1c !important;
+  border-color:#2a2522 !important;
+}
+
+html[data-theme="light"] .legacy-mount .vibe-arena,
+body:not(.react-dark) .legacy-mount .vibe-arena {
+  background:radial-gradient(circle at 78% 30%,rgba(62,145,232,.15),transparent 24%),radial-gradient(circle at 20% 90%,rgba(237,75,80,.12),transparent 30%),#fff9e9 !important;
+}
+
+html[data-theme="light"] .stat,
+body:not(.react-dark) .stat,
+html[data-theme="light"] .web-actions span,
+body:not(.react-dark) .web-actions span {
+  background:#fff9e9 !important;
+  color:#211d1c !important;
+  border-color:#2a2522 !important;
+}
+
+html[data-theme="light"] .legacy-mount .recommendation-heading h3,
+body:not(.react-dark) .legacy-mount .recommendation-heading h3,
+html[data-theme="light"] .legacy-mount .recommendation-item h4,
+body:not(.react-dark) .legacy-mount .recommendation-item h4,
+html[data-theme="light"] .legacy-mount .vibe-intro h3,
+body:not(.react-dark) .legacy-mount .vibe-intro h3 {
+  color:#211d1c !important;
+}
+
+html[data-theme="light"] .legacy-mount .recommendation-item p,
+body:not(.react-dark) .legacy-mount .recommendation-item p,
+html[data-theme="light"] .legacy-mount .vibe-intro p,
+body:not(.react-dark) .legacy-mount .vibe-intro p {
+  color:#6f6965 !important;
+}
+
+/* Every reusable legacy panel uses the paper surface in light mode. */
+html[data-theme="light"] .legacy-mount .comic-panel,
+body:not(.react-dark) .legacy-mount .comic-panel,
+html[data-theme="light"] .legacy-mount .aha-card,
+body:not(.react-dark) .legacy-mount .aha-card,
+html[data-theme="light"] .legacy-mount .future-letter-alert,
+body:not(.react-dark) .legacy-mount .future-letter-alert,
+html[data-theme="light"] .legacy-mount .spidey-boost-top,
+body:not(.react-dark) .legacy-mount .spidey-boost-top {
+  background:#fff9e9 !important;
+  color:#211d1c !important;
+  border-color:#2a2522 !important;
+  box-shadow:5px 6px 0 rgba(42,37,34,.18) !important;
+}
+
+html[data-theme="light"] .legacy-mount .comic-panel h3,
+body:not(.react-dark) .legacy-mount .comic-panel h3,
+html[data-theme="light"] .legacy-mount .comic-panel h4,
+body:not(.react-dark) .legacy-mount .comic-panel h4,
+html[data-theme="light"] .legacy-mount .comic-panel strong,
+body:not(.react-dark) .legacy-mount .comic-panel strong,
+html[data-theme="light"] .legacy-mount .aha-card h3,
+body:not(.react-dark) .legacy-mount .aha-card h3 {
+  color:#211d1c !important;
+}
+
+html[data-theme="light"] .legacy-mount .comic-panel p,
+body:not(.react-dark) .legacy-mount .comic-panel p,
+html[data-theme="light"] .legacy-mount .aha-card p,
+body:not(.react-dark) .legacy-mount .aha-card p {
+  color:#6f6965 !important;
+}
+
+html[data-theme="light"] .legacy-mount .voice-visualizer,
+body:not(.react-dark) .legacy-mount .voice-visualizer,
+html[data-theme="light"] .legacy-mount .weather-map,
+body:not(.react-dark) .legacy-mount .weather-map,
+html[data-theme="light"] .legacy-mount .prediction-meter,
+body:not(.react-dark) .legacy-mount .prediction-meter {
+  background:#efe4cf !important;
+  border-color:#b8aa99 !important;
+}
+
+/* =========================================================
+   FINAL DASHBOARD FIX — NO OVERLAPS + REAL CLICK TARGETS
+   ========================================================= */
+.feature-grid {
+  display: grid !important;
+  grid-template-columns: repeat(4, minmax(0, 1fr)) !important;
+  gap: 14px !important;
+  align-items: stretch !important;
+}
+
+.feature-card {
+  min-width: 0 !important;
+  min-height: 235px !important;
+  height: 235px !important;
+  padding: 18px !important;
+  display: flex !important;
+  flex-direction: column !important;
+  justify-content: flex-start !important;
+  align-items: stretch !important;
+  position: relative !important;
+  overflow: hidden !important;
+  cursor: pointer !important;
+  isolation: isolate;
+}
+
+.feature-card:hover { transform: translateY(-3px) !important; }
+
+.feature-card .card-title {
+  position: relative !important;
+  inset: auto !important;
+  z-index: 3 !important;
+  margin: 0 0 8px !important;
+  line-height: 1 !important;
+  flex: 0 0 auto !important;
+}
+
+.feature-card > p {
+  position: relative !important;
+  inset: auto !important;
+  z-index: 3 !important;
+  margin: 0 !important;
+  max-width: 100% !important;
+  line-height: 1.25 !important;
+  flex: 0 0 auto !important;
+}
+
+/* AI: speech sits below the copy, never on top of the title. */
+.ai-card .speech {
+  position: relative !important;
+  left: auto !important;
+  right: auto !important;
+  top: auto !important;
+  bottom: auto !important;
+  z-index: 2 !important;
+  width: min(100%, 230px) !important;
+  max-width: 230px !important;
+  margin: 16px 0 0 !important;
+  padding: 9px 11px !important;
+  line-height: 1.2 !important;
+  flex: 0 0 auto !important;
+}
+
+.ai-card .mini-spidey,
+.diary-card .diary-book {
+  display: none !important;
+}
+
+/* Nudge: message occupies normal flow, with CTA pinned safely at bottom. */
+.nudge-card .nudge-message {
+  position: relative !important;
+  left: auto !important;
+  right: auto !important;
+  top: auto !important;
+  bottom: auto !important;
+  transform: none !important;
+  width: 100% !important;
+  margin: 16px 0 0 !important;
+  padding: 10px !important;
+  z-index: 2 !important;
+  line-height: 1.05 !important;
+  flex: 0 0 auto !important;
+}
+
+/* Chart: reserve a real area rather than absolutely covering the copy. */
+.trend-card .mini-chart {
+  position: relative !important;
+  left: auto !important;
+  right: auto !important;
+  top: auto !important;
+  bottom: auto !important;
+  width: 100% !important;
+  height: 58px !important;
+  margin: 14px 0 0 !important;
+  padding: 6px !important;
+  flex: 0 0 58px !important;
+  z-index: 1 !important;
+}
+
+.trend-card .mini-chart span {
+  position: relative !important;
+  z-index: 1 !important;
+}
+
+/* CTA is a visual button inside a real button; keep it clickable with the
+   parent while preventing it from intercepting the parent click. */
+.feature-card .card-cta {
+  position: relative !important;
+  left: auto !important;
+  right: auto !important;
+  top: auto !important;
+  bottom: auto !important;
+  z-index: 4 !important;
+  margin-top: auto !important;
+  align-self: flex-start !important;
+  pointer-events: none !important;
+  flex: 0 0 auto !important;
+}
+
+/* Remove old transforms from decorative content only; preserve the card hover. */
+.feature-card .speech,
+.feature-card .nudge-message,
+.feature-card .mini-chart,
+.feature-card .card-title,
+.feature-card > p,
+.feature-card .card-cta {
+  transform: none !important;
+}
+
+@media (max-width: 1200px) and (min-width: 761px) {
+  .feature-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+  }
+}
+
+@media (max-width: 760px) {
+  .feature-grid {
+    grid-template-columns: 1fr !important;
+  }
+  .feature-card {
+    height: 225px !important;
+    min-height: 225px !important;
+  }
+}
+
+/* Make all dashboard navigation controls receive pointer input. */
+.feature-card,
+.feature-card * {
+  pointer-events: auto;
+}
+.feature-card .card-cta { pointer-events: none; }
+
+/* FINAL FIX: style.css has a global .red rule that was overriding the
+   hero tag and making red text sit on the red background. */
+html[data-theme="light"] .hero-panel .comic-tag.red,
+body:not(.react-dark) .hero-panel .comic-tag.red {
+  background: var(--normal-red);
+  color: var(--normal-ink) !important;
+  -webkit-text-fill-color: var(--normal-ink) !important;
+  opacity: 1;
+  visibility: visible;
+}
+
+/* Keep the hero tag readable in dark mode too. */
+.react-dark .hero-panel .comic-tag.red {
+  color: #fff !important;
+  -webkit-text-fill-color: #fff !important;
+}
+
+/* FINAL LIGHT-MODE READABILITY FIX — MIX LABEL */
+html[data-theme="light"] .legacy-mount .mix-label,
+body:not(.react-dark) .legacy-mount .mix-label {
+  color: var(--normal-ink) !important;
+  -webkit-text-fill-color: var(--normal-ink) !important;
+  text-shadow: 2px 2px 0 rgba(42,37,34,.08);
+  opacity: 1;
+  visibility: visible;
+}
+
+/* Keep the whole mix section readable even if legacy dark-mode rules load later. */
+html[data-theme="light"] .legacy-mount .mix-row,
+body:not(.react-dark) .legacy-mount .mix-row {
+  color: var(--normal-ink);
+}
+
+html[data-theme="light"] .legacy-mount .mix-row .tag-chip,
+body:not(.react-dark) .legacy-mount .mix-row .tag-chip {
+  color: var(--normal-ink) !important;
+  -webkit-text-fill-color: var(--normal-ink) !important;
+}
+
+html[data-theme="light"] .legacy-mount .mix-row .tag-chip.selected,
+body:not(.react-dark) .legacy-mount .mix-row .tag-chip.selected {
+  color: var(--normal-ink) !important;
+  background: #dceff0;
+  border-color: #477f81;
+}
+
+
+/* Pick-a-mood: five choices matching the check-in mood scale. */
+html[data-theme="light"] .mood-panel .mood-grid,
+body:not(.react-dark) .mood-panel .mood-grid {
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:10px;
+}
+html[data-theme="light"] .mood-panel .mood-tile,
+body:not(.react-dark) .mood-panel .mood-tile {
+  min-height:104px;
+  cursor:pointer;
+  font-family:inherit;
+}
+@media(max-width:760px){
+  html[data-theme="light"] .mood-panel .mood-grid,
+  body:not(.react-dark) .mood-panel .mood-grid {
+    grid-template-columns:repeat(2,minmax(0,1fr));
+  }
+}
