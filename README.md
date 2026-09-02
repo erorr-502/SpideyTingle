@@ -814,7 +814,6 @@ The core idea is simple:
 **When you understand what you are feeling, you have a better starting point for understanding what you need.**
 
 ---
-
 ## Final tagline
 
 > **SpideyTingle — catch your feelings before they catch you.** 🕷️
