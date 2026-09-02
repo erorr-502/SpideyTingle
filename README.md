@@ -11,6 +11,12 @@ The application combines mood tracking, reflective conversation, personalized in
 SpideyTingle is a **wellness and self-reflection tool, not a medical device, therapist, diagnostic system, or replacement for professional care.**
 
 ---
+## Team Data Divas
+
+- Juee Mahale
+- Pranjali Joshi
+- Sagnika Mukherjee
+- Garima Choudhari
 
 ## 1. What problem does SpideyTingle solve?
 
