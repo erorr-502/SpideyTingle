@@ -18,6 +18,8 @@ SpideyTingle is a **wellness and self-reflection tool, not a medical device, the
 - Sagnika Mukherjee
 - Garima Choudhari
 
+---
+
 ## 1. What problem does SpideyTingle solve?
 
 People often know that they are having a difficult day without knowing exactly what they are feeling, what may be influencing it, or what small action could help.
